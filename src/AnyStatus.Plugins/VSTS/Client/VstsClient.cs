@@ -98,6 +98,7 @@ namespace AnyStatus
         {
             using (var handler = new WebRequestHandler())
             {
+                handler.UseDefaultCredentials = string.IsNullOrEmpty(Connection.UserName) || string.IsNullOrEmpty(Connection.Password); ;
                 var httpClient = new HttpClient(handler);
 
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -109,10 +110,12 @@ namespace AnyStatus
                 }
 
                 var sb = new StringBuilder();
-                sb.Append("https://");
-                sb.Append(Connection.Account);
-                if (vsrm) sb.Append(".vsrm");
-                sb.Append(".visualstudio.com/");
+                sb.Append(Connection.Url);
+                if (!string.IsNullOrEmpty(Connection.Collection))
+                {
+                    sb.Append(Connection.Collection);
+                    sb.Append("/");
+                }
                 sb.Append(Connection.Project);
                 sb.Append("/_apis/");
                 sb.Append(api);
@@ -141,10 +144,12 @@ namespace AnyStatus
                 }
 
                 var sb = new StringBuilder();
-                sb.Append("https://");
-                sb.Append(Connection.Account);
-                if (vsrm) sb.Append(".vsrm");
-                sb.Append(".visualstudio.com/");
+                sb.Append(Connection.Url);
+                if (!string.IsNullOrEmpty(Connection.Collection))
+                {
+                    sb.Append(Connection.Collection);
+                    sb.Append("/");
+                }
                 sb.Append(Connection.Project);
                 sb.Append("/_apis/");
                 sb.Append(api);

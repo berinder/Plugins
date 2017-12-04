@@ -14,7 +14,7 @@ namespace AnyStatus.Plugins.Tests.VSTS
 
             var vstsRelease = new VSTSRelease_v1
             {
-                Account = "account",
+                Url = "account",
                 Project = "project",
                 DefinitionId = 1
             };

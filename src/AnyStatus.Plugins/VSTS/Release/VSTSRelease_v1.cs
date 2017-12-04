@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus
 {
-    [DisplayName("VSTS Release (Preview)")]
+    [DisplayName("VSTS Release")]
     [DisplayColumn("Continuous Integration")]
     [Description("Visual Studio Team Services - Release Status and Notifications")]
     public class VSTSRelease_v1 : VstsPlugin, IMonitored, ICanOpenInBrowser//, ICanTriggerBuild

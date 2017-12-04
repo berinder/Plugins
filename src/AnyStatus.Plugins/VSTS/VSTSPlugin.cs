@@ -7,18 +7,24 @@ namespace AnyStatus
 {
     public abstract class VstsPlugin : Build
     {
-        private const string Category = "Visual Studio Team Services";
+        private const string Category = "Visual Studio Team Services / Team Foundation Server 2018";
 
         protected VstsPlugin(bool aggregate) : base(aggregate)
         {
+            Collection = "DefaultCollection";
         }
 
         [Url]
         [Required]
         [Category(Category)]
         [PropertyOrder(10)]
-        [Description("Required. Enter your Visual Studio Team Services account name.")]
-        public string Account { get; set; }
+        [Description("Required. Visual Studio Team Services account (https://{account}.visualstudio.com) or TFS server (http://{server:port}/tfs)")]
+        public string Url { get; set; }
+
+        [Category(Category)]
+        [PropertyOrder(20)]
+        [Description("Required. The collection name. Default: DefaultCollection")]
+        public string Collection { get; set; }
 
         [Required]
         [Category(Category)]
@@ -26,7 +32,6 @@ namespace AnyStatus
         [DisplayName("Project")]
         [Description("Required (case-sensitive). Enter your Visual Studio Team Services project name.")]
         public string Project { get; set; }
-
 
         [PropertyOrder(30)]
         [Category(Category)]

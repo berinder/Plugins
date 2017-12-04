@@ -14,7 +14,7 @@ namespace AnyStatus.Plugins.Tests
 
             var vstsBuild = new VSTSBuild_v1
             {
-                Account = "account",
+                Url = "account",
                 Project = "project",
                 DefinitionId = 1
             };
@@ -34,7 +34,7 @@ namespace AnyStatus.Plugins.Tests
         {
             var build = new VSTSBuild_v1
             {
-                Account = "production",
+                Url = "production",
                 Project = "Demo",
                 DefinitionName = "Demo-CI",
                 Name = "Test",

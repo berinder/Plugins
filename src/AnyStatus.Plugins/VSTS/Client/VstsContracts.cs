@@ -6,13 +6,16 @@ namespace AnyStatus
 {
     public class VstsConnection
     {
-        public string Account { get; set; }
+        public string Url { get; set; }
+
+        public string Collection { get; set; }
 
         public string Project { get; set; }
 
         public string UserName { get; set; }
 
         public string Password { get; set; }
+
     }
 
     public class VSTSBuildDefinition
@@ -114,7 +117,123 @@ namespace AnyStatus
             }
         }
 
+        public DeploymentAttempt[] DeploySteps { get; set; }
+
         public ReleasePreDeployApproval[] PreDeployApprovals { get; set; }
+    }
+
+    public class DeploymentAttempt
+    {
+        public string Status { get; set; }
+
+        public ReleaseDeployPhase[] ReleaseDeployPhases { get; set; }
+
+
+        public State State
+        {
+            get
+            {
+                // https://www.visualstudio.com/en-us/docs/integrate/api/rm/contracts#DeploymentStatus
+
+                switch (Status)
+                {
+                    case "notDeployed":
+                        return State.None;
+                    case "inProgress":
+                        return State.Running;
+                    case "succeeded":
+                        return State.Ok;
+                    case "partiallySucceeded":
+                        return State.PartiallySucceeded;
+                    case "failed":
+                        return State.Failed;
+                    case "all":
+                        return State.Invalid; // TODO : Figure out what "all" means....
+                    default:
+                        return State.Unknown;
+                }
+            }
+        }
+    }
+
+    public class ReleaseDeployPhase
+    {
+
+        public string Status { get; set; }
+
+        public DeploymentJob[] DeploymentJobs { get; set; }
+
+        public State State
+        {
+            get
+            {
+                // https://www.visualstudio.com/en-us/docs/integrate/api/rm/contracts#DeployPhaseStatus
+
+                switch (Status)
+                {
+                    case "notStarted":
+                        return State.None;
+                    case "inProgress":
+                        return State.Running;
+                    case "succeeded":
+                        return State.Ok;
+                    case "partiallySucceeded":
+                        return State.PartiallySucceeded;
+                    case "failed":
+                        return State.Failed;
+                    case "canceled":
+                        return State.Canceled;
+                    case "skipped":
+                        return State.None;
+                    default:
+                        return State.Unknown;
+                }
+            }
+        }
+    }
+
+    public class DeploymentJob
+    {
+        public ReleaseTask[] Tasks;
+    }
+
+    public class ReleaseTask
+    {
+        public string Name { get; set; }
+
+        public string Status { get; set; }
+
+        public State State
+        {
+            get
+            {
+                // https://www.visualstudio.com/en-us/docs/integrate/api/rm/contracts#TaskStatus
+
+                switch (Status)
+                {
+                    case "pending":
+                        return State.Running;
+                    case "inProgress":
+                        return State.Running;
+                    case "success":
+                        return State.Ok;
+                    case "failure":
+                        return State.Failed;
+                    case "canceled":
+                        return State.Canceled;
+                    case "skipped":
+                        return State.None;
+                    case "succeeded":
+                        return State.Ok;
+                    case "failed":
+                        return State.Failed;
+                    case "partiallySucceeded":
+                        return State.PartiallySucceeded;
+                    default:
+                        return State.Unknown;
+                }
+            }
+        }
     }
 
     public class VSTSReleaseDefinition

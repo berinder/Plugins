@@ -11,4 +11,13 @@ namespace AnyStatus
         [DisplayName("Environment Id")]
         public long EnvironmentId { get; set; }
     }
+
+    [Browsable(false)]
+    [DisplayName("Failing tasks")]
+    public class VSTSReleaseTask : Plugin
+    {
+        [ReadOnly(true)]
+        [DisplayName("Task name")]
+        public string Identifier { get; set; }
+    }
 }

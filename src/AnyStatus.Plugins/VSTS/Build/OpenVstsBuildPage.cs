@@ -17,7 +17,7 @@ namespace AnyStatus
             if (build.DefinitionId == null)
                 throw new InvalidOperationException("Cannot open web page. Unknown build definition id.");
 
-            var uri = $"https://{build.Account}.visualstudio.com/{build.Project}/_build/index?definitionId={build.DefinitionId}&_a=completed";
+            var uri = $"{build.Url}/{build.Collection}/{build.Project}/_build/index?definitionId={build.DefinitionId}&_a=completed";
 
             _processStarter.Start(uri);
         }
