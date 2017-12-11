@@ -13,7 +13,6 @@ namespace AnyStatus
 {
     public class VSTSReleaseMonitor : IMonitor<VSTSRelease_v1>
     {
-        [DebuggerStepThrough]
         public void Handle(VSTSRelease_v1 vstsRelease)
         {
             var client = new VstsClient
@@ -72,7 +71,7 @@ namespace AnyStatus
 
             foreach (var nodeItem in node.Items)
             {
-                foreach (var nodeItemItem in nodeItem.Items)
+                foreach (var nodeItemItem in nodeItem.Items.ToArray())
                 {
                     Application.Current.Dispatcher.Invoke(() => nodeItem.Remove(nodeItemItem));
                 }

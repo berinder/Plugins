@@ -77,7 +77,7 @@ namespace AnyStatus
             var releases = await Request<Collection<VSTSRelease>>("release/releases?$top=1&definitionId=" + releaseDefinitionId, true).ConfigureAwait(false);
 
             if (releases == null || releases.Value == null)
-                throw new Exception("VSTS release not found.");
+                throw new Exception("Release not found.");
 
             return releases.Value.FirstOrDefault();
         }
@@ -87,7 +87,7 @@ namespace AnyStatus
             var details = await Request<VSTSReleaseDetails>("release/releases/" + releaseId, true).ConfigureAwait(false);
 
             if (details == null)
-                throw new Exception("VSTS Release release details were not found.");
+                throw new Exception("Release details were not found.");
 
             return details;
         }

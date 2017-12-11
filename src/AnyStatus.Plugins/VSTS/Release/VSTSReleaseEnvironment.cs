@@ -3,13 +3,22 @@ using System.ComponentModel;
 
 namespace AnyStatus
 {
-    [Browsable(false)]
+    [Browsable(true)]
     [DisplayName("VSTS Release Environment")]
-    public class VSTSReleaseEnvironment : Plugin
+    public class VSTSReleaseEnvironment : Plugin, ICanOpenInBrowser
     {
         [ReadOnly(true)]
         [DisplayName("Environment Id")]
         public long EnvironmentId { get; set; }
+
+        [ReadOnly(true)]
+        [DisplayName("Definition Environment ID")]
+        public long DefinitionEnvironmentId { get; set; }
+
+        public bool CanOpenInBrowser()
+        {
+            return true;
+        }
     }
 
     [Browsable(false)]
