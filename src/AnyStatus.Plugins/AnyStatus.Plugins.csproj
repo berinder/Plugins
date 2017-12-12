@@ -90,6 +90,7 @@
     <Compile Include="VSTS\Build\VstsBuild_v1.cs" />
     <Compile Include="VSTS\Release\OpenVstsEnvironmentPage.cs" />
     <Compile Include="VSTS\Release\OpenVstsReleasePage.cs" />
+    <Compile Include="VSTS\Release\OpenVstsTaskPage.cs" />
     <Compile Include="VSTS\Release\VSTSReleaseEnvironment.cs" />
     <Compile Include="VSTS\Release\VSTSReleaseMonitor.cs" />
     <Compile Include="VSTS\Release\VSTSRelease_v1.cs" />
