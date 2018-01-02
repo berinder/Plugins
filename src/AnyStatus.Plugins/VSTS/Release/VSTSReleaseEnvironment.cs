@@ -5,7 +5,7 @@ namespace AnyStatus
 {
     [Browsable(true)]
     [DisplayName("VSTS Release Environment")]
-    public class VSTSReleaseEnvironment : Plugin, ICanOpenInBrowser
+    public class VSTSReleaseEnvironment : Widget, ICanOpenInBrowser
     {
         [ReadOnly(true)]
         [DisplayName("Environment Id")]

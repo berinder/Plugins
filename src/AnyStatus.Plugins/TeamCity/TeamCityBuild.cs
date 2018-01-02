@@ -84,7 +84,6 @@ namespace AnyStatus
         {
             if (State == State.Failed)
             {
-                if (PreviousState == State.Error) return Notification.Empty; //bypass when network connection is restored.
                 return new Notification($"{Name} failed. {StateText}", NotificationIcon.Error);
             }
 
