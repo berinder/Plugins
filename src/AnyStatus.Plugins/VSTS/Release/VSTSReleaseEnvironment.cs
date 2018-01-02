@@ -23,7 +23,7 @@ namespace AnyStatus
 
     [Browsable(false)]
     [DisplayName("Failing tasks")]
-    public class VSTSReleaseTask : Plugin
+    public class VSTSReleaseTask : Widget
     {
         [ReadOnly(true)]
         [DisplayName("Task name")]
